@@ -15,7 +15,7 @@ class EventsController extends Controller
     public function index(Request $request): View
     {
          $events = Event::all();
-          $query = Event::query();
+        $query = Event::query();
 
         // Verifica dacă există o căutare după titlu
         if ($request->has('title')) {
