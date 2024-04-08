@@ -9,7 +9,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Carti</a>
+            <a class="navbar-brand" href="#">Creaza Evenimente</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('events.index')}}">Carti</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('events.index')}}">Events</a>
                         </li>
                     </ul>
                 </div>
@@ -31,7 +31,6 @@
                     <div class="mb-3">
 
                         <input type="text" name="title" class="form-control" placeholder="Titlu">
-            
                         @error('title')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -42,7 +41,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
 
-                        <input type="text" name="date" class="form-control" placeholder="Data">
+                        <input type="date" name="date" class="form-control" placeholder="Data">
 
                          @error('date')
                             <div class="alert alert-danger">{{ $message }}</div>

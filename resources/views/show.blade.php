@@ -9,7 +9,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Carti</a>
+            <a class="navbar-brand" href="#">Events</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -17,19 +17,24 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('books.index')}}">Carti</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('events.index')}}">Events</a>
                         </li>
                     </ul>
                 </div>
         </div>
     </nav>
-    <div class="container">
+     <div class="container">
         <div class="row">
-            <div class="col-md-6 m-auto">
-                <h3>{{$book->titlu}}</h3>
-                <h3>{{$book->autor}}</h3>
-                <h3>{{$book->pagini}}</h3>
-                <h3>{{$book->pret}}</h3>
+            <div class="col-md-6">
+
+                <h3>{{$event->title}}</h3>
+                <h3>{{$event->description}}</h3>
+                <h3>{{$event->date}}</h3>
+                <h3>{{$event->location}}</h3>
+            </div>
+            <!-- Butonul -->
+            <div class="col-md-6 align-self-center">
+                <button class="btn btn-primary">Inregistreazate</button>
             </div>
         </div>
     </div>

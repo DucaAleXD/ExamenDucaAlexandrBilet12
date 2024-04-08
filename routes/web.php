@@ -15,3 +15,5 @@ use App\Http\Controllers\EventsController;
 
 Route::get('/', [EventsController::class,'index']);
 Route::resource('events',EventsController::class);//cim dorimi sa creem crud,asr=tfel ea creaza toate linkurile necesare pentru crud
+Route::post('/events/{event}/register', [EventsController::class, 'register'])->name('events.register');
+

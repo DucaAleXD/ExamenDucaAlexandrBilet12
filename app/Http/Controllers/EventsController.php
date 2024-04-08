@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Models\Event;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class EventsController extends Controller
@@ -13,12 +12,26 @@ class EventsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): View
     {
          $events = Event::all();
-         return view('index',['events'=>$events]);
-        
-    }
+          $query = Event::query();
+
+        // Verifica dacă există o căutare după titlu
+        if ($request->has('title')) {
+            $query->where('title', 'like', '%' . $request->input('title') . '%');
+        }
+
+        // Verifica dacă există o căutare după locație
+        if ($request->has('location')) {
+            $query->where('location', 'like', '%' . $request->input('location') . '%');
+        }
+
+        // Obține evenimentele filtrate
+        $events = $query->get();
+            return view('index',['events'=>$events]);
+            
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +50,9 @@ class EventsController extends Controller
         $validated = $request->validate([
         'title' => 'required|unique:events|max:255',
         'description' => 'required',
-        'location' => 'required|numeric',
+        'date' => 'required',
+        'location' => 'required',
+        
     ]);
         Event::create($request->all());
         return redirect()->back();
@@ -46,10 +61,10 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+     public function show(Event $event)
     {
-    return view('show',['event'=>$book]);
-
+        //Preluare id-ul event
+        return view('show',['event'=>$event]);
     }
 
     /**
@@ -70,13 +85,13 @@ class EventsController extends Controller
         $book->date=$request->date;
         $book->location=$request->location;
         $book->save();
-        return redirect()->route('books.index');
+        return redirect()->route('events.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
        $event->delete();
         return redirect()->back();
