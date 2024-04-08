@@ -24,19 +24,32 @@
         </div>
     </nav>
      <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-
-                <h3>{{$event->title}}</h3>
-                <h3>{{$event->description}}</h3>
-                <h3>{{$event->date}}</h3>
-                <h3>{{$event->location}}</h3>
-            </div>
-            <!-- Butonul -->
-            <div class="col-md-6 align-self-center">
-                <button class="btn btn-primary">Inregistreazate</button>
+        <div class="card">
+        <h4 class="card-header">{{$event->title}}</h4>
+            <div class="card-body">
+                <h5 class="card-title">{{$event->location}}</h5>
+                <h6 class="card-title">{{$event->date}}</h6>
+                <p class="card-text">{{$event->description}}</p>
+                <!-- Adăugați un ID la buton pentru a putea accesa elementul în JavaScript -->
+                <a href="#" id="registerBtn" class="btn btn-primary">Inregistreazate</a>
             </div>
         </div>
+    
     </div>
+
+    <!-- Încorporați scriptul JavaScript -->
+    <script>
+        // Obțineți butonul de înregistrare din DOM
+        const registerBtn = document.getElementById('registerBtn');
+
+        // Adăugați un eveniment de clic la buton
+        registerBtn.addEventListener('click', function() {
+            // Afișați un mesaj de confirmare că sunteți înregistrat la eveniment
+            alert('Ai fost înregistrat la eveniment!');
+
+            // Redirecționați utilizatorul către pagina principală
+            window.location.href = "{{route('events.index')}}";
+        });
+    </script>
 </body>
 </html>
